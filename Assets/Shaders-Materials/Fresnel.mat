@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Fresnel
+  m_Shader: {fileID: 4800000, guid: 6d59930e4dc8cc34398da0ff6137b6ae, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Floats:
+    - _FresnelPower: 1
+    - _SunPos: 0
+    m_Colors:
+    - _Color: {r: 0.10199357, g: 0.1103002, b: 0.11320752, a: 1}
+    - _FresnelColor: {r: 0.8392188, g: 0.15619439, b: 0.8490566, a: 1}
+    - _ShadowColor: {r: 0, g: 0, b: 0, a: 1}
