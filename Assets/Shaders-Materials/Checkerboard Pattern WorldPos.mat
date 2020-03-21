@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Checkerboard Pattern
+  m_Name: Checkerboard Pattern WorldPos
   m_Shader: {fileID: 4800000, guid: 40285c980012dc342ad8a494d4075bd0, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -20,8 +20,8 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Floats:
-    - _Scale: 1.68
+    - _Scale: 5
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color1: {r: 0.8490566, g: 0.78010637, b: 0.54067284, a: 1}
-    - _Color2: {r: 0.47218764, g: 0.764151, b: 0.74262875, a: 1}
+    - _Color1: {r: 0.9245283, g: 0.30444437, b: 0.2747419, a: 1}
+    - _Color2: {r: 0.40334642, g: 0.8301887, b: 0.79604137, a: 1}
