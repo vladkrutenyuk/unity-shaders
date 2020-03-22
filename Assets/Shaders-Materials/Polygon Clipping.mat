@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FakeLight
-  m_Shader: {fileID: 4800000, guid: 50541fffc83681242bc90e938e235b1d, type: 3}
+  m_Name: Polygon Clipping
+  m_Shader: {fileID: 4800000, guid: 96ada0747aab68643899bba264978506, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -19,10 +19,6 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs: []
-    m_Floats:
-    - _FresnelPower: 1
-    - _SunPos: 0.69
+    m_Floats: []
     m_Colors:
-    - _Color: {r: 0.8584906, g: 0.851309, b: 0.8301442, a: 1}
-    - _FresnelColor: {r: 1, g: 0, b: 0, a: 1}
-    - _ShadowColor: {r: 0.114142045, g: 0.19216366, b: 0.254717, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}

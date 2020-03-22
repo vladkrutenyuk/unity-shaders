@@ -29,16 +29,16 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _Metalness: 0
-    - _Roughness: 0.78
+    - _Roughness: 0.73
     - _ShadowContrast: 1.35
     - _SunIntensity: 0.71
     - _SunX: -0.91
     - _SunY: 0.94
     - _SunZ: -1
-    - _pow: 2.2
+    - _pow: 1.8
     - _remap1: 0
-    - _remap2: 1.45
+    - _remap2: 1.1
     m_Colors:
-    - _Color: {r: 0.3773585, g: 0.3773585, b: 0.3773585, a: 1}
+    - _Color: {r: 0.45768067, g: 0.6590672, b: 0.8018868, a: 1}
     - _ShadowColor: {r: 0.1509434, g: 0.1509434, b: 0.1509434, a: 1}
     - _SunColor: {r: 0.8490566, g: 0.6387536, b: 0.54067284, a: 1}
