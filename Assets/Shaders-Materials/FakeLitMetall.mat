@@ -29,7 +29,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _Metalness: 0
-    - _Roughness: 0.73
+    - _Roughness: 0.31
     - _ShadowContrast: 1.35
     - _SunIntensity: 0.71
     - _SunX: -0.91
