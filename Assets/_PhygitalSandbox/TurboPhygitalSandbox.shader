@@ -3,7 +3,8 @@
     Properties
     {   
         _HeightMap ("Height Map", 2D) = "white" {}
-        
+        _Amount ("Height Amount", Range(0, 10)) = 1
+                
         _FirstTex ("Texture 1", 2D) = "white" {}
         
         _Edge1Level ("Edge 1 Level", Range(0, 1)) = 0
@@ -15,9 +16,17 @@
         _Edge2Smoothness ("Edge 2 Smoothness", Range(0, 0.5)) = 0
         
         _ThirdTex ("Texture 3", 2D) = "white" {}  
-      
-        _Color ("Tint Color", Color) = (1, 1, 1)
+        
         _Sharpness ("Triplanar Sharpenss", Range(2, 64)) = 1
+      
+        _GradientMap ("Gradient Map", 2D) = "white" {}  
+        _GradientVisibility ("Gradient Transition", Range(0, 1)) = 1
+        
+        _RingGradientColor ("Ring Gradient Color", Color) = (1, 1, 1)
+        _RingGradientDensity ("Ring Gradient Density", Range(1, 15)) = 1
+        _RingGradientVisibility ("RingGradient Transition", Range(0, 1)) = 1
+        _RingGradientThickness ("Ring Gradient Thickness ", Range(0, 0.1)) = 0.05
+        
     }
     SubShader
     {
@@ -29,19 +38,29 @@
 
             #include "UnityCG.cginc"
             
+            half _Amount;
+            
             half _Edge1Level;
             half _Edge1Smoothness;
             
             half _Edge2Level;
             half _Edge2Smoothness;
             
+            float4 _HeightMap_ST;
             sampler2D _HeightMap;
+            
             sampler2D _FirstTex;
             sampler2D _SecondTex;
             sampler2D _ThirdTex;
             
-            fixed3 _Color;
+            sampler2D _GradientMap;
+            half _GradientVisibility;
             half _Sharpness;
+            
+            half _RingGradientDensity;
+            half _RingGradientVisibility;
+            half3 _RingGradientColor;
+            half _RingGradientThickness;
 
             struct v2f
             {   
@@ -55,10 +74,12 @@
             {
                 v2f o;
 
+                o.uv = TRANSFORM_TEX(uv, _HeightMap);
+                float displacement = tex2Dlod(_HeightMap, float4(o.uv, 0, 0)).r;
+                localPos.y += displacement * _Amount;
+
                 o.svPos = UnityObjectToClipPos(localPos);
                 o.worldPos = mul(unity_ObjectToWorld, localPos);
-                o.uv = uv;
-
                 o.worldNormal = normalize(UnityObjectToWorldNormal(localNormal));
 
                 return o;
@@ -67,7 +88,7 @@
             fixed3 Fragment (v2f i) : SV_Target
             {
                 half heightMap = tex2D(_HeightMap, i.uv).r;
-                _Edge1Level = clamp(_Edge1Level, 0, _Edge2Level + _Edge2Smoothness);
+                _Edge1Level = clamp(_Edge1Level, 0, 1);
                 _Edge2Level = clamp(_Edge2Level, _Edge1Level + _Edge1Smoothness, 1);
                 half mask1to2 = smoothstep(_Edge1Level, _Edge1Level + _Edge1Smoothness, heightMap);
                 half mask2to3 = smoothstep(_Edge2Level, _Edge2Level + _Edge2Smoothness, heightMap);
@@ -88,7 +109,6 @@
                 fixed3 col_side = col_side1 + col_side2 + col_side3;
                 fixed3 col_top = col_top1 + col_top2 + col_top3;
 
-                // upd normals after displacement
                 fixed3 weights = abs(i.worldNormal);
 
                 weights = pow(weights, _Sharpness);
@@ -100,7 +120,13 @@
                 col_top *= weights.y;
 
                 fixed3 col = col_front + col_side + col_top;
-                col *= _Color;
+                
+                fixed3 colorGradient = tex2D(_GradientMap, float2(clamp(heightMap, 0.05, 0.95), 0.5));
+                col = lerp(col, colorGradient, _GradientVisibility);
+
+                half ringGradient = frac((heightMap + 0.1) * _RingGradientDensity);
+                ringGradient = 1 - step(_RingGradientThickness * _RingGradientDensity / 2, ringGradient);
+                col = lerp(col, _RingGradientColor, ringGradient * _RingGradientVisibility);
 
                 return col;
             }
